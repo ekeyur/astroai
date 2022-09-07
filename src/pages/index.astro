@@ -12,6 +12,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
+		<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 		<main>
 			<h1>🧑‍🚀 Hello, Astronaut!</h1>
 			<p>
@@ -46,5 +47,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 			</p>
 		</main>
 		<Footer />
+		<script>
+			if (window.netlifyIdentity) {
+				window.netlifyIdentity.on("init", user => {
+					if (!user) {
+						window.netlifyIdentity.on("login", () => {
+							document.location.href = "/admin/";
+						});
+					}
+				});
+			}
+		</script>
+
 	</body>
 </html>
